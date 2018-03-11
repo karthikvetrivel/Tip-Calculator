@@ -11,6 +11,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tipTextField: UITextField!
     @IBOutlet weak var billTotal: UILabel!
     
     @IBOutlet weak var firstHeight: NSLayoutConstraint!
@@ -31,9 +32,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // scaling some of the views.
-       firstHeight.constant = (self.view.frame.size.width / 3) - 10
+        makePickerView()
+        makeToolBar()
         
-       purpleHeight.constant = (self.view.frame.size.height / 3) - 30
+        firstHeight.constant = (self.view.frame.size.width / 3) - 10
+        purpleHeight.constant = (self.view.frame.size.height / 3) - 30
         
     }
 
@@ -74,8 +77,6 @@ class ViewController: UIViewController {
                     decimalLocation += 1
                     totalBillAmount += decimalAmount
                 }
-               
-                
               
         
             }
@@ -163,6 +164,37 @@ class ViewController: UIViewController {
     }
     // turn the array back to #'s
     
+    func makePickerView() {
+        
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        tipTextField.inputView = pickerView
+        
+        // Customize color here
+        pickerView.backgroundColor = UIColor(red:0.22, green:0.23, blue:0.31, alpha:1.0)
+    }
+    
+    func makeToolBar() {
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.dismissKeyboard))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        // Customize color here
+        toolBar.barTintColor = UIColor(red:0.17, green:0.18, blue:0.28, alpha:1.0)
+        tipTextField.inputAccessoryView = toolBar
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -170,5 +202,34 @@ class ViewController: UIViewController {
     }
     
    
+}
+
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return tipAmount.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(tipAmount[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedTip = tipAmount[row]
+        tipTextField.text = "     " + String(selectedTip)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        let string = String(tipAmount[row])
+        return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+    }
+    
+    
+    
+
 }
 
