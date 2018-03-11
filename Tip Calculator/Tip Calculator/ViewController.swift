@@ -143,6 +143,7 @@ class ViewController: UIViewController {
         let doubleStr = String(format: "%.2f", ceil(perValue*100)/100) // "3.15
         
         perPerson.text = String(doubleStr)
+        // takes into account only split, not tip.
     }
     
     // update billTotal
