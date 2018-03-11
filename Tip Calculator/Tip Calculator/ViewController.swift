@@ -48,7 +48,6 @@ class ViewController: UIViewController {
                 }
                 
                 decimalLocation += 1
-                print(decimalAmount)
                 totalBillAmount += decimalAmount
             }
             
@@ -56,6 +55,8 @@ class ViewController: UIViewController {
             decimal = true
         case 12:
             totalBillAmount = 0.0
+            decimal = false
+            decimalLocation = 1
         default:
             print("An error occured")
         }
