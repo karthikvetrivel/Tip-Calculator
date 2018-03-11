@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     var intBillAmount: Int = 0;
     var amountArr = [Int]();
     
-    var selectedTip : Int = 0
+    var selectedTip : Int = 25
     let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 
     override func viewDidLoad() {
@@ -153,6 +153,9 @@ class ViewController: UIViewController {
         let pickerView = UIPickerView()
         pickerView.delegate = self
         tipTextField.inputView = pickerView
+        
+        // Customize color here
+        pickerView.backgroundColor = UIColor(red:0.22, green:0.23, blue:0.31, alpha:1.0)
     }
     
     func makeToolBar() {
@@ -167,7 +170,10 @@ class ViewController: UIViewController {
         toolBar.setItems([doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         
+        // Customize color here
+        toolBar.barTintColor = UIColor(red:0.17, green:0.18, blue:0.28, alpha:1.0)
         tipTextField.inputAccessoryView = toolBar
+        
     }
     
     @objc func dismissKeyboard() {
@@ -199,6 +205,14 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         selectedTip = tipAmount[row]
         tipTextField.text = "     " + String(selectedTip)
     }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        
+        let string = String(tipAmount[row])
+        return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+    }
+    
+    
     
 
 }
