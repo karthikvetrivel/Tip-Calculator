@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var purpleHeight: NSLayoutConstraint!
     @IBOutlet weak var billView: UIView!
     @IBOutlet weak var clearButton: UIButton!
+    @IBOutlet weak var perPerson: UILabel!
     
     var totalDecimal : Float = 0;
     var totalBillAmount : Float = 0.0
@@ -25,13 +26,11 @@ class ViewController: UIViewController {
     var decimal = false
     var intBillAmount: Int = 0;
     var amountArr = [Int]();
-    
-    @IBOutlet weak var perPerson: UILabel!
     var perValue : Float = 0;
     
     var tip = false
     var selectedTip : Int = 25
-    var selectedSplit : Int = 3
+    var selectedSplit : Int = 1
     let split = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
     
@@ -135,14 +134,15 @@ class ViewController: UIViewController {
         
         // display billTotal
         formatBill(billAmount: totalBillAmount)
+        displayTip()
         
-        perValue = (totalBillAmount / Float(selectedSplit))
-        print(perValue)
-        print(selectedSplit)
-        
-        let doubleStr = String(format: "%.2f", ceil(perValue*100)/100) // "3.15
-        
-        perPerson.text = String(doubleStr)
+//        perValue = (totalBillAmount / Float(selectedSplit))
+//        print(perValue)
+//        print(selectedSplit)
+//
+//        let doubleStr = String(format: "%.2f", ceil(perValue*100)/100) // "3.15
+//
+//        perPerson.text = String(doubleStr)
         // takes into account only split, not tip.
     }
     
@@ -151,6 +151,9 @@ class ViewController: UIViewController {
         billTotal.text = "$" + String(format: "%.2f", billAmount)
     }
     
+    func displayTip() {
+        perPerson.text = "$" + String(format: "%.2f", totalBillAmount * Float(selectedTip) / 100 / Float(selectedSplit))
+    }
     
     func turnToArray(amount: Float) {
         let toTurnToInt = String(Int(amount))
@@ -263,7 +266,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             selectedSplit = split[row]
             splitTextField.text = "     " + String(selectedSplit)
         }
-        
+        displayTip()
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
