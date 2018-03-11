@@ -83,24 +83,24 @@
                                         <rect key="frame" x="125" y="0.0" width="125" height="125"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Pe1-gi-39h">
-                                                <rect key="frame" x="0.0" y="0.0" width="64.5" height="125"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="68.5" height="125"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="‌‌ " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4Y-ag-MdG" userLabel="‌‌">
-                                                        <rect key="frame" x="0.0" y="0.0" width="64.5" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="68.5" height="20.5"/>
                                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <color key="highlightedColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="       SPLIT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Oq-am-qvW" userLabel="‌‌">
-                                                        <rect key="frame" x="0.0" y="20.5" width="64.5" height="17"/>
+                                                        <rect key="frame" x="0.0" y="20.5" width="68.5" height="18"/>
                                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                         <color key="textColor" red="0.93333333330000001" green="0.56470588239999997" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="highlightedColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" text="3" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cPM-rf-IaC">
-                                                        <rect key="frame" x="0.0" y="37.5" width="64.5" height="87.5"/>
+                                                        <rect key="frame" x="0.0" y="38.5" width="68.5" height="86.5"/>
                                                         <color key="backgroundColor" red="0.83664661650000005" green="0.34309315680000002" blue="0.27005988359999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
@@ -112,10 +112,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bsh-C5-BxL">
-                                                <rect key="frame" x="64.5" y="0.0" width="60.5" height="125"/>
+                                                <rect key="frame" x="68.5" y="0.0" width="56.5" height="125"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x  ▼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYn-j5-dK0">
-                                                        <rect key="frame" x="0.0" y="0.0" width="60.5" height="125"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="56.5" height="125"/>
                                                         <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -367,7 +367,10 @@
                     </view>
                     <connections>
                         <outlet property="billTotal" destination="WNv-ga-jNX" id="hkc-ki-vT4"/>
+                        <outlet property="billView" destination="7UU-ic-gB4" id="aCh-Ze-VfU"/>
+                        <outlet property="clearButton" destination="n5h-cL-IKp" id="tfv-b0-TjY"/>
                         <outlet property="firstHeight" destination="Tia-Fh-cai" id="b4c-qG-hKQ"/>
+                        <outlet property="perPerson" destination="2xI-ji-fDr" id="wWB-nX-9MF"/>
                         <outlet property="purpleHeight" destination="49z-fr-hgh" id="0uM-7d-k9e"/>
                         <outlet property="splitTextField" destination="cPM-rf-IaC" id="MAC-7x-aNI"/>
                         <outlet property="tipTextField" destination="ESF-aG-efE" id="ulj-hV-Vq5"/>
