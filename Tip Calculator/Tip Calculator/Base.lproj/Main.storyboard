@@ -148,7 +148,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PER PERSON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqC-Ql-O2c">
-                                        <rect key="frame" x="154.5" y="28" width="66" height="12"/>
+                                        <rect key="frame" x="154.5" y="35" width="66" height="6"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                         <color key="textColor" red="0.6705882352941176" green="0.60392156862745094" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -160,25 +160,25 @@
                                     <constraint firstAttribute="height" constant="171" id="49z-fr-hgh"/>
                                     <constraint firstItem="GqC-Ql-O2c" firstAttribute="centerX" secondItem="zzQ-ex-ViF" secondAttribute="centerX" id="5hI-A2-XEa"/>
                                     <constraint firstItem="2xI-ji-fDr" firstAttribute="centerY" secondItem="zzQ-ex-ViF" secondAttribute="centerY" id="Cf9-VD-4oj"/>
-                                    <constraint firstItem="GqC-Ql-O2c" firstAttribute="top" secondItem="zzQ-ex-ViF" secondAttribute="top" constant="28" id="V33-aA-7AA"/>
-                                    <constraint firstItem="2xI-ji-fDr" firstAttribute="top" secondItem="GqC-Ql-O2c" secondAttribute="bottom" constant="2" id="vEV-oI-bBI"/>
+                                    <constraint firstItem="GqC-Ql-O2c" firstAttribute="top" secondItem="zzQ-ex-ViF" secondAttribute="top" constant="35" id="V33-aA-7AA"/>
+                                    <constraint firstItem="2xI-ji-fDr" firstAttribute="top" secondItem="GqC-Ql-O2c" secondAttribute="bottom" constant="1" id="vEV-oI-bBI"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7UU-ic-gB4" userLabel="billView">
                                 <rect key="frame" x="0.0" y="171" width="375" height="37"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNv-ga-jNX">
-                                        <rect key="frame" x="182" y="8" width="185" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                        <color key="textColor" red="0.71372549019607845" green="0.67450980392156867" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bill Total:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wf8-sq-3ei">
                                         <rect key="frame" x="100" y="8" width="87" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                         <color key="textColor" red="0.71372549019999998" green="0.67450980390000004" blue="0.73725490199999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNv-ga-jNX">
+                                        <rect key="frame" x="180" y="-9" width="216" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" red="0.71372549019607845" green="0.67450980392156867" blue="0.73725490196078436" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -329,10 +329,13 @@
                                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bog-kX-0k2"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" tag="12" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="Y7B-Bi-uaj">
+                                            <button opaque="NO" tag="13" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U8X-YD-208">
                                                 <rect key="frame" x="250" y="0.0" width="125" height="83.5"/>
-                                                <color key="backgroundColor" red="0.1647058824" green="0.1843137255" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </imageView>
+                                                <state key="normal" title="Button" image="back"/>
+                                                <connections>
+                                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T6k-Eh-iSK"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>

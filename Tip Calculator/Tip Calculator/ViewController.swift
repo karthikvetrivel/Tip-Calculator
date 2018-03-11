@@ -17,43 +17,68 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var purpleHeight: NSLayoutConstraint!
     
+    var totalDecimal : Float = 0;
     var totalBillAmount : Float = 0.0
     var decimalAmount : Float = 0.0
     var decimalLocation : Int = 1
     var decimal = false
+    var intBillAmount: Int = 0;
+    var amountArr = [Int](); 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       firstHeight.constant = (self.view.frame.size.width / 3) + 20
         
-       purpleHeight.constant = (self.view.frame.size.height / 3)
+        // scaling some of the views.
+       firstHeight.constant = (self.view.frame.size.width / 3) - 10
+        
+       purpleHeight.constant = (self.view.frame.size.height / 3) - 30
         
     }
 
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         switch sender.tag {
+        // corresponds to each #, case 10 is the 0 button.
         case 1 ... 10:
             
             if !decimal {
+                // adds numbers by the tens, hundereds
                 totalBillAmount *= 10
                 if sender.tag != 10{
                     totalBillAmount += Float(sender.tag)
                 }
             } else {
-                decimalAmount = Float(sender.tag)
-                for _ in 0 ... decimalLocation-1 {
-                    decimalAmount /= 10
+                // starts adding numbers through the tenths, hundereths, etc.
+                if sender.tag != 10 {
+                    decimalAmount = Float(sender.tag)
+                    for _ in 0 ... decimalLocation-1 {
+                        decimalAmount /= 10
+                    }
+                   
+                    totalDecimal += decimalAmount
+                    // for the delete button
+                    
+                    decimalLocation += 1
+                    totalBillAmount += decimalAmount
                 }
+               
                 
                 decimalLocation += 1
                 totalBillAmount += decimalAmount
             }
-            
+        
+        // the decimal button
         case 11:
+            // switches the decimal system, seen above
             decimal = true
+       
+            
+        // clear button
         case 12:
+            // resets to the previous settings.
+            decimal = false
+            decimalLocation = 1
             totalBillAmount = 0.0
             decimal = false
             decimalLocation = 1
@@ -61,13 +86,35 @@ class ViewController: UIViewController {
             print("An error occured")
         }
         
+        // display billTotal
         formatBill(billAmount: totalBillAmount)
     }
     
+    // update billTotal
     func formatBill( billAmount : Float) {
         billTotal.text = "$" + String(format: "%.2f", billAmount)
     }
     
+    
+    func turnToArray(amount: Float) {
+        let toTurnToInt = String(Int(amount))
+        amountArr = toTurnToInt.flatMap{Int(String($0))} // [1, 2, 3, 4, 5, 6]
+        // turns the number in a string and removes the last value.
+        
+    }
+    
+    func turnToNumber() {
+        intBillAmount = 0;
+        var i : Int = 0;
+        for _ in amountArr {
+            intBillAmount *= 10
+            intBillAmount += amountArr[i];
+            i += 1
+        }
+    }
+    // turn the array back to #'s
+    
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
