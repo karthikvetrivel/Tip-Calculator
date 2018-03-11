@@ -2,6 +2,8 @@
 
 To Do - 
 - Fix Delete button IMG bug. 
+- Firebase analytics?
+- Settings page
 
 
 Collaborators -
