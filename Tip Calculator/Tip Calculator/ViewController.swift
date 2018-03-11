@@ -5,7 +5,6 @@
 //  Created by Karsick on 3/8/18.
 //  Copyright © 2018 Karthik Vetrivel. All rights reserved.
 //
-
 import UIKit
 
 
@@ -17,13 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var firstHeight: NSLayoutConstraint!
     @IBOutlet weak var purpleHeight: NSLayoutConstraint!
     
-    
-    
-    
-    @objc func myTargetFunction(textField: UITextField) {
-        print("myTargetFunction")
-    }
-    
     var totalDecimal : Float = 0;
     var totalBillAmount : Float = 0.0
     var decimalAmount : Float = 0.0
@@ -31,17 +23,12 @@ class ViewController: UIViewController {
     var decimal = false
     var intBillAmount: Int = 0;
     var amountArr = [Int]();
-
-    
     
     var tip = false
     var selectedTip : Int = 25
     var selectedSplit : Int = 1
     let split = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
-    
-    var selectedSplit : Int = 3
-    let splitNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,18 +39,8 @@ class ViewController: UIViewController {
         purpleHeight.constant = (self.view.frame.size.height / 3) - 30
         
     }
-
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        
-        if totalBillAmount == 0 {
-            decimalLocation = 1
-            totalBillAmount = 0.0
-            totalDecimal = 0.0;
-            amountArr = [Int]();
-        }
-        
-       
         
         switch sender.tag {
         // corresponds to each #, case 10 is the 0 button.
@@ -78,50 +55,38 @@ class ViewController: UIViewController {
             } else {
                 // starts adding numbers through the tenths, hundereths, etc.
                 if sender.tag != 10 {
-                    
                     decimalAmount = Float(sender.tag)
                     for _ in 0 ... decimalLocation-1 {
                         decimalAmount /= 10
                     }
-                   
+                    
                     totalDecimal += decimalAmount
                     // for the delete button
                     
                     decimalLocation += 1
                     totalBillAmount += decimalAmount
                 }
-              
-        
+                
+                
             }
-        
+            
         // the decimal button
         case 11:
             // switches the decimal system, seen above
             decimal = true
-
+            
             
         // clear button
         case 12:
             // resets to the previous settings.
-            decimal = false;
+            decimal = false
             decimalLocation = 1
             totalBillAmount = 0.0
             totalDecimal = 0.0;
-            amountArr = [Int]();
-
+            
             
         // delete button
         case 13:
-            var remainder1 = Double(totalBillAmount).truncatingRemainder(dividingBy: 1)
-            remainder1 = (round(remainder1*100)) / 100.0;
-            print(remainder1);
-            
-            let remainder: Float = Float(remainder1)
-            
-            if remainder == 0 {
-                decimal = false;
-            }
-          
             // only works with non-decimal numbers.
             if !decimal {
                 turnToArray(amount: totalBillAmount)
@@ -130,20 +95,24 @@ class ViewController: UIViewController {
                 totalBillAmount = Float(intBillAmount)
                 
             }  else {
-
-                if ((remainder1 * 100).truncatingRemainder(dividingBy: 10)) == 0  {
-                    totalBillAmount -= remainder
-                } else {
+                if decimalLocation == 3 {
                     totalDecimal *= 100;
-                    let toTurnToInt = String(totalDecimal)
-                    amountArr = toTurnToInt.flatMap{Int(String($0))}
-                    amountArr.removeFirst()
-                    turnToNumber()
-                    totalDecimal = Float(intBillAmount)
-                    totalBillAmount -= (totalDecimal/1000)
                 }
-             
+                
+                if decimalLocation == 2 {
+                    totalDecimal *= 10
+                }
+                
+                let toTurnToInt = String(totalDecimal)
+                amountArr = toTurnToInt.flatMap{Int(String($0))}
+                amountArr.removeFirst()
+                turnToNumber()
+                totalDecimal = Float(intBillAmount)
+                totalBillAmount -= (totalDecimal/1000)
+                
             }
+            
+            
             
         default:
             print("An error occured")
@@ -153,13 +122,9 @@ class ViewController: UIViewController {
         formatBill(billAmount: totalBillAmount)
     }
     
-    
-    
     // update billTotal
     func formatBill( billAmount : Float) {
         billTotal.text = "$" + String(format: "%.2f", billAmount)
-        
-        
     }
     
     
@@ -181,9 +146,8 @@ class ViewController: UIViewController {
     }
     // turn the array back to #'s
     
-    func makeTipPickerView() {
-
-     
+    func makePickerView() {
+        
         let pickerView = UIPickerView()
         pickerView.delegate = self
         
@@ -192,23 +156,12 @@ class ViewController: UIViewController {
         } else {
             splitTextField.inputView = pickerView
         }
-
+        
         // Customize color here
         pickerView.backgroundColor = UIColor(red:0.19, green:0.21, blue:0.30, alpha:1.0)
     }
     
-    func makeSplitPickerView() {
-        
-        let splitView = UIPickerView()
-        splitView.delegate = self
-        splitTextField.inputView = splitView
-        
-        
-        // Customize color here
-        splitView.backgroundColor = UIColor(red:0.22, green:0.23, blue:0.31, alpha:1.0)
-    }
-    
-    func makeToolBar(field: UITextField) {
+    func makeToolBar() {
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
@@ -234,15 +187,17 @@ class ViewController: UIViewController {
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-  
+    
     @IBAction func tipPressed(_ sender: Any) {
         tip = true
+        print("pressed1")
         makePickerView()
         makeToolBar()
     }
     
     @IBAction func splitPressed(_ sender: Any) {
         tip = false
+        print("pressed2")
         makePickerView()
         makeToolBar()
     }
@@ -252,10 +207,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-   
+    
 }
-
-
 
 extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
