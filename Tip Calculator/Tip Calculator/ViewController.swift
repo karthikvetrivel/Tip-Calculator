@@ -11,6 +11,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tipTextField: UITextField!
     @IBOutlet weak var billTotal: UILabel!
     
     @IBOutlet weak var firstHeight: NSLayoutConstraint!
@@ -23,16 +24,21 @@ class ViewController: UIViewController {
     var decimalLocation : Int = 1
     var decimal = false
     var intBillAmount: Int = 0;
-    var amountArr = [Int](); 
+    var amountArr = [Int]();
+    
+    var selectedTip : Int = 0
+    let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         // scaling some of the views.
-       firstHeight.constant = (self.view.frame.size.width / 3) - 10
+        makePickerView()
+        makeToolBar()
         
-       purpleHeight.constant = (self.view.frame.size.height / 3) - 30
+        firstHeight.constant = (self.view.frame.size.width / 3) - 10
+        purpleHeight.constant = (self.view.frame.size.height / 3) - 30
         
     }
 
@@ -62,10 +68,8 @@ class ViewController: UIViewController {
                     decimalLocation += 1
                     totalBillAmount += decimalAmount
                 }
-               
-                
-                decimalLocation += 1
-                totalBillAmount += decimalAmount
+              
+        
             }
         
         // the decimal button
@@ -80,8 +84,38 @@ class ViewController: UIViewController {
             decimal = false
             decimalLocation = 1
             totalBillAmount = 0.0
-            decimal = false
-            decimalLocation = 1
+            totalDecimal = 0.0;
+
+            
+        // delete button
+        case 13:
+            // only works with non-decimal numbers.
+            if !decimal {
+                turnToArray(amount: totalBillAmount)
+                amountArr.popLast()
+                turnToNumber()
+                totalBillAmount = Float(intBillAmount)
+                
+            }  else {
+                if decimalLocation == 3 {
+                    totalDecimal *= 100;
+                }
+                
+                if decimalLocation == 2 {
+                    totalDecimal *= 10
+                }
+                
+                let toTurnToInt = String(totalDecimal)
+                amountArr = toTurnToInt.flatMap{Int(String($0))}
+                amountArr.removeFirst()
+                turnToNumber()
+                totalDecimal = Float(intBillAmount)
+                totalBillAmount -= (totalDecimal/1000)
+                
+            }
+            
+            
+            
         default:
             print("An error occured")
         }
@@ -114,6 +148,31 @@ class ViewController: UIViewController {
     }
     // turn the array back to #'s
     
+    func makePickerView() {
+        
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        tipTextField.inputView = pickerView
+    }
+    
+    func makeToolBar() {
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.dismissKeyboard))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        tipTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -121,5 +180,26 @@ class ViewController: UIViewController {
     }
     
    
+}
+
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return tipAmount.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(tipAmount[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedTip = tipAmount[row]
+        tipTextField.text = "     " + String(selectedTip)
+    }
+    
+
 }
 
