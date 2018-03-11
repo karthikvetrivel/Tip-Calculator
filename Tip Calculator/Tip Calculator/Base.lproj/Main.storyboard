@@ -60,7 +60,6 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="tipPressed:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="iwc-Mm-Njn"/>
                                                             <action selector="tipPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="uYs-WV-gFx"/>
                                                         </connections>
                                                     </textField>
@@ -107,8 +106,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="36"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
-                                                            <action selector="splitPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Sx7-Rz-JWk"/>
-                                                            <action selector="splitPressed:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="xhR-Id-oT2"/>
+                                                            <action selector="splitPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="Qt7-e7-7mV"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>

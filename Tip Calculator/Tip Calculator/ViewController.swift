@@ -190,18 +190,17 @@ class ViewController: UIViewController {
     
     @IBAction func tipPressed(_ sender: Any) {
         tip = true
-        print("pressed1")
+        print("tip")
         makePickerView()
         makeToolBar()
     }
     
     @IBAction func splitPressed(_ sender: Any) {
         tip = false
-        print("pressed2")
+        print("split")
         makePickerView()
         makeToolBar()
     }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
