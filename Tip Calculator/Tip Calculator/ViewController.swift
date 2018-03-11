@@ -23,7 +23,8 @@ class ViewController: UIViewController {
     var decimalLocation : Int = 1
     var decimal = false
     var intBillAmount: Int = 0;
-    var amountArr = [Int](); 
+    var amountArr = [Int]();
+    var counter: Int = 0;
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,16 @@ class ViewController: UIViewController {
 
     @IBAction func buttonPressed(_ sender: UIButton) {
         
+        if totalBillAmount == 0 {
+            decimalLocation = 1
+            totalBillAmount = 0.0
+            totalDecimal = 0.0;
+            amountArr = [Int]();
+        }
+        
+       
+        
+        
         switch sender.tag {
         // corresponds to each #, case 10 is the 0 button.
         case 1 ... 10:
@@ -51,6 +62,7 @@ class ViewController: UIViewController {
             } else {
                 // starts adding numbers through the tenths, hundereths, etc.
                 if sender.tag != 10 {
+                    
                     decimalAmount = Float(sender.tag)
                     for _ in 0 ... decimalLocation-1 {
                         decimalAmount /= 10
@@ -72,19 +84,30 @@ class ViewController: UIViewController {
         case 11:
             // switches the decimal system, seen above
             decimal = true
-       
+
             
         // clear button
         case 12:
             // resets to the previous settings.
-            decimal = false
+            decimal = false;
             decimalLocation = 1
             totalBillAmount = 0.0
             totalDecimal = 0.0;
+            amountArr = [Int]();
 
             
         // delete button
         case 13:
+            var remainder1 = Double(totalBillAmount).truncatingRemainder(dividingBy: 1)
+            remainder1 = (round(remainder1*100)) / 100.0;
+            print(remainder1);
+            
+            var remainder: Float = Float(remainder1)
+            
+            if remainder == 0 {
+                decimal = false;
+            }
+          
             // only works with non-decimal numbers.
             if !decimal {
                 turnToArray(amount: totalBillAmount)
@@ -93,24 +116,20 @@ class ViewController: UIViewController {
                 totalBillAmount = Float(intBillAmount)
                 
             }  else {
-                if decimalLocation == 3 {
+
+                if ((remainder1 * 100).truncatingRemainder(dividingBy: 10)) == 0  {
+                    totalBillAmount -= remainder
+                } else {
                     totalDecimal *= 100;
+                    let toTurnToInt = String(totalDecimal)
+                    amountArr = toTurnToInt.flatMap{Int(String($0))}
+                    amountArr.removeFirst()
+                    turnToNumber()
+                    totalDecimal = Float(intBillAmount)
+                    totalBillAmount -= (totalDecimal/1000)
                 }
-                
-                if decimalLocation == 2 {
-                    totalDecimal *= 10
-                }
-                
-                let toTurnToInt = String(totalDecimal)
-                amountArr = toTurnToInt.flatMap{Int(String($0))}
-                amountArr.removeFirst()
-                turnToNumber()
-                totalDecimal = Float(intBillAmount)
-                totalBillAmount -= (totalDecimal/1000)
-                
+             
             }
-            
-            
             
         default:
             print("An error occured")
