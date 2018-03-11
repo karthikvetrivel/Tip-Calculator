@@ -11,12 +11,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
+   
+
     @IBOutlet weak var tipTextField: UITextField!
     @IBOutlet weak var billTotal: UILabel!
+    
+    @IBOutlet weak var splitTextField: UITextField!
     
     @IBOutlet weak var firstHeight: NSLayoutConstraint!
     
     @IBOutlet weak var purpleHeight: NSLayoutConstraint!
+    
+    
+    
+    
+    @objc func myTargetFunction(textField: UITextField) {
+        print("myTargetFunction")
+    }
     
     var totalDecimal : Float = 0;
     var totalBillAmount : Float = 0.0
@@ -25,21 +36,31 @@ class ViewController: UIViewController {
     var decimal = false
     var intBillAmount: Int = 0;
     var amountArr = [Int]();
-    var counter: Int = 0;
 
+    
+    
+    var selectedTip : Int = 25
+    let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+    
+    var selectedSplit : Int = 3
+    let splitNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         // scaling some of the views.
-        makePickerView()
-        makeToolBar()
+        makeTipPickerView()
+        makeSplitPickerView()
+        makeToolBar(field: tipTextField);
+        makeToolBar(field: splitTextField);
         
-        firstHeight.constant = (self.view.frame.size.width / 3) - 10
+        firstHeight.constant = (self.view.frame.size.width / 3) - 20
         purpleHeight.constant = (self.view.frame.size.height / 3) - 30
         
     }
 
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         if totalBillAmount == 0 {
@@ -50,7 +71,6 @@ class ViewController: UIViewController {
         }
         
        
-        
         
         switch sender.tag {
         // corresponds to each #, case 10 is the 0 button.
@@ -103,7 +123,7 @@ class ViewController: UIViewController {
             remainder1 = (round(remainder1*100)) / 100.0;
             print(remainder1);
             
-            var remainder: Float = Float(remainder1)
+            let remainder: Float = Float(remainder1)
             
             if remainder == 0 {
                 decimal = false;
@@ -140,9 +160,13 @@ class ViewController: UIViewController {
         formatBill(billAmount: totalBillAmount)
     }
     
+    
+    
     // update billTotal
     func formatBill( billAmount : Float) {
         billTotal.text = "$" + String(format: "%.2f", billAmount)
+        
+        
     }
     
     
@@ -164,8 +188,9 @@ class ViewController: UIViewController {
     }
     // turn the array back to #'s
     
-    func makePickerView() {
-        
+    func makeTipPickerView() {
+
+     
         let pickerView = UIPickerView()
         pickerView.delegate = self
         tipTextField.inputView = pickerView
@@ -174,7 +199,18 @@ class ViewController: UIViewController {
         pickerView.backgroundColor = UIColor(red:0.22, green:0.23, blue:0.31, alpha:1.0)
     }
     
-    func makeToolBar() {
+    func makeSplitPickerView() {
+        
+        let splitView = UIPickerView()
+        splitView.delegate = self
+        splitTextField.inputView = splitView
+        
+        
+        // Customize color here
+        splitView.backgroundColor = UIColor(red:0.22, green:0.23, blue:0.31, alpha:1.0)
+    }
+    
+    func makeToolBar(field: UITextField) {
         
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
@@ -188,7 +224,7 @@ class ViewController: UIViewController {
         
         // Customize color here
         toolBar.barTintColor = UIColor(red:0.17, green:0.18, blue:0.28, alpha:1.0)
-        tipTextField.inputAccessoryView = toolBar
+        field.inputAccessoryView = toolBar
         
     }
     
@@ -203,6 +239,8 @@ class ViewController: UIViewController {
     
    
 }
+
+
 
 extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
