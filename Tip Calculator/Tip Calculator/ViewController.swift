@@ -10,12 +10,11 @@ import UIKit
 
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var splitTextField: UITextField!
     @IBOutlet weak var tipTextField: UITextField!
     @IBOutlet weak var billTotal: UILabel!
-    
     @IBOutlet weak var firstHeight: NSLayoutConstraint!
-    
     @IBOutlet weak var purpleHeight: NSLayoutConstraint!
     
     var totalDecimal : Float = 0;
@@ -26,7 +25,10 @@ class ViewController: UIViewController {
     var intBillAmount: Int = 0;
     var amountArr = [Int]();
     
+    var tip = false
     var selectedTip : Int = 25
+    var selectedSplit : Int = 1
+    let split = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 
     override func viewDidLoad() {
@@ -34,9 +36,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // scaling some of the views.
-        makePickerView()
-        makeToolBar()
-        
         firstHeight.constant = (self.view.frame.size.width / 3) - 10
         purpleHeight.constant = (self.view.frame.size.height / 3) - 30
         
@@ -152,10 +151,15 @@ class ViewController: UIViewController {
         
         let pickerView = UIPickerView()
         pickerView.delegate = self
-        tipTextField.inputView = pickerView
         
+        if tip {
+            tipTextField.inputView = pickerView
+        } else {
+            splitTextField.inputView = pickerView
+        }
+
         // Customize color here
-        pickerView.backgroundColor = UIColor(red:0.22, green:0.23, blue:0.31, alpha:1.0)
+        pickerView.backgroundColor = UIColor(red:0.19, green:0.21, blue:0.30, alpha:1.0)
     }
     
     func makeToolBar() {
@@ -169,10 +173,15 @@ class ViewController: UIViewController {
         
         toolBar.setItems([doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
-        
+        toolBar.barTintColor = UIColor(red:0.13, green:0.15, blue:0.27, alpha:1.0)
         // Customize color here
-        toolBar.barTintColor = UIColor(red:0.17, green:0.18, blue:0.28, alpha:1.0)
-        tipTextField.inputAccessoryView = toolBar
+        if tip {
+            tipTextField.inputAccessoryView = toolBar
+        } else {
+            splitTextField.inputAccessoryView = toolBar
+        }
+        
+        
         
     }
     
@@ -180,6 +189,18 @@ class ViewController: UIViewController {
         self.view.endEditing(true)
     }
   
+    @IBAction func tipPressed(_ sender: Any) {
+        tip = true
+        makePickerView()
+        makeToolBar()
+    }
+    
+    @IBAction func splitPressed(_ sender: Any) {
+        tip = false
+        makePickerView()
+        makeToolBar()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -194,26 +215,42 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return tipAmount.count
+        if tip {
+            return tipAmount.count
+        } else {
+            return split.count
+        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(tipAmount[row])
+        if tip {
+            return String(tipAmount[row])
+        } else {
+            return String(split[row])
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedTip = tipAmount[row]
-        tipTextField.text = "     " + String(selectedTip)
+        if tip {
+            selectedTip = tipAmount[row]
+            tipTextField.text = "     " + String(selectedTip)
+        } else {
+            selectedSplit = split[row]
+            splitTextField.text = "     " + String(selectedSplit)
+        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         
-        let string = String(tipAmount[row])
+        let string : String
+        if tip {
+            string = String(tipAmount[row])
+        } else {
+            string = String(split[row])
+        }
         return NSAttributedString(string: string, attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
     }
-    
-    
-    
-
 }
 
