@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var billTotal: UILabel!
     @IBOutlet weak var firstHeight: NSLayoutConstraint!
     @IBOutlet weak var purpleHeight: NSLayoutConstraint!
+    @IBOutlet weak var billView: UIView!
+    @IBOutlet weak var clearButton: UIButton!
     
     var totalDecimal : Float = 0;
     var totalBillAmount : Float = 0.0
@@ -24,9 +26,12 @@ class ViewController: UIViewController {
     var intBillAmount: Int = 0;
     var amountArr = [Int]();
     
+    @IBOutlet weak var perPerson: UILabel!
+    var perValue : Float = 0;
+    
     var tip = false
     var selectedTip : Int = 25
-    var selectedSplit : Int = 1
+    var selectedSplit : Int = 3
     let split = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
     
@@ -37,6 +42,16 @@ class ViewController: UIViewController {
         // scaling some of the views.
         firstHeight.constant = (self.view.frame.size.width / 3) - 10
         purpleHeight.constant = (self.view.frame.size.height / 3) - 30
+        
+        billView.layer.shadowColor = UIColor.black.cgColor
+        billView.layer.shadowOpacity = 0.5
+        billView.layer.shadowOffset = CGSize.init(width: 0, height: 4)
+        billView.layer.shadowRadius = 7
+        
+        clearButton.layer.shadowColor = UIColor.black.cgColor
+        clearButton.layer.shadowOpacity = 0.3
+        clearButton.layer.shadowOffset = CGSize.init(width: 0, height: -4)
+        clearButton.layer.shadowRadius = 7
         
     }
     
@@ -120,6 +135,15 @@ class ViewController: UIViewController {
         
         // display billTotal
         formatBill(billAmount: totalBillAmount)
+        
+        perValue = (totalBillAmount / Float(selectedSplit))
+        print(perValue)
+        print(selectedSplit)
+        
+        let doubleStr = String(format: "%.2f", ceil(perValue*100)/100) // "3.15
+        
+        perPerson.text = String(doubleStr)
+        // takes into account only split, not tip.
     }
     
     // update billTotal
