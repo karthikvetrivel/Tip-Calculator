@@ -12,12 +12,16 @@ import UIKit
 class ViewController: UIViewController {
 
     
+    @IBOutlet weak var firstHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var purpleHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       
+       firstHeight.constant = (self.view.frame.size.height / 3) - 35
         
+       purpleHeight.constant = (self.view.frame.size.height / 3)
         
     }
 
