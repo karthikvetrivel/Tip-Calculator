@@ -25,23 +25,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       firstHeight.constant = (self.view.frame.size.width / 3) + 20
         
-       purpleHeight.constant = (self.view.frame.size.height / 3)
+        // scaling some of the views.
+       firstHeight.constant = (self.view.frame.size.width / 3)
+        
+       purpleHeight.constant = (self.view.frame.size.height / 3) - 30
         
     }
 
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         switch sender.tag {
+        // corresponds to each #, case 10 is the 0 button.
         case 1 ... 10:
             
             if !decimal {
+                // adds numbers by the tens, hundereds
                 totalBillAmount *= 10
                 if sender.tag != 10{
                     totalBillAmount += Float(sender.tag)
                 }
             } else {
+                // starts adding numbers through the tenths, hundereths, etc.
                 decimalAmount = Float(sender.tag)
                 for _ in 0 ... decimalLocation-1 {
                     decimalAmount /= 10
@@ -51,18 +56,27 @@ class ViewController: UIViewController {
                 print(decimalAmount)
                 totalBillAmount += decimalAmount
             }
-            
+        
+        // the decimal button
         case 11:
+            // switches the decimal system, seen above
             decimal = true
+            
+        // clear button
         case 12:
+            // resets to the previous settings.
+            decimal = false
+            decimalLocation = 1
             totalBillAmount = 0.0
         default:
             print("An error occured")
         }
         
+        // display billTotal
         formatBill(billAmount: totalBillAmount)
     }
     
+    // update billTotal
     func formatBill( billAmount : Float) {
         billTotal.text = "$" + String(format: "%.2f", billAmount)
     }
