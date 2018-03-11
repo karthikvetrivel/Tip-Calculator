@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       firstHeight.constant = (self.view.frame.size.height / 3) - 35
+       firstHeight.constant = (self.view.frame.size.width / 3) + 20
         
        purpleHeight.constant = (self.view.frame.size.height / 3)
         
