@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var perPerson: UILabel!
     @IBOutlet weak var changeModes: UIButton!
+
+    @IBOutlet weak var zeroButtonWidth: NSLayoutConstraint!
+  
     
     var totalDecimal : Float = 0;
     var totalBillAmount : Float = 0.0
@@ -53,6 +56,9 @@ class ViewController: UIViewController {
         clearButton.layer.shadowOpacity = 0.3
         clearButton.layer.shadowOffset = CGSize.init(width: 0, height: -4)
         clearButton.layer.shadowRadius = 7
+        
+        zeroButtonWidth.constant = (self.view.frame.size.width / 3) * 2
+        
         
     }
     
@@ -100,40 +106,9 @@ class ViewController: UIViewController {
             totalBillAmount = 0.0
             totalDecimal = 0.0;
             
-            
-        // delete button
-        case 13:
-            // only works with non-decimal numbers.
-            if !decimal {
-                turnToArray(amount: totalBillAmount)
-                amountArr.popLast()
-                turnToNumber()
-                totalBillAmount = Float(intBillAmount)
-                
-            }  else {
-                if decimalLocation == 3 {
-                    totalDecimal *= 100;
-                }
-                
-                if decimalLocation == 2 {
-                    totalDecimal *= 10
-                }
-                
-                let toTurnToInt = String(totalDecimal)
-                amountArr = toTurnToInt.flatMap{Int(String($0))}
-                amountArr.removeFirst()
-                turnToNumber()
-                totalDecimal = Float(intBillAmount)
-                totalBillAmount -= (totalDecimal/1000)
-                
-            }
         
-        case 14:
+        case 13:
             tipMode = !tipMode
-            
-            
-            
-            
             
             
         default:
@@ -151,16 +126,26 @@ class ViewController: UIViewController {
              displayTotal()
         }
 
-        
-//        perValue = (totalBillAmount / Float(selectedSplit))
-//        print(perValue)
-//        print(selectedSplit)
-//
-//        let doubleStr = String(format: "%.2f", ceil(perValue*100)/100) // "3.15
-//
-//        perPerson.text = String(doubleStr)
-        // takes into account only split, not tip.
     }
+    
+    
+    @IBAction func displayTipView(_ sender: Any) {
+        tip = true
+        print("tip")
+        makePickerView()
+        makeToolBar()
+          tipTextField.becomeFirstResponder()
+    }
+    
+    
+    @IBAction func displaySplitView(_ sender: Any) {
+        tip = false
+        print("split")
+        makePickerView()
+        makeToolBar()
+        tipTextField.becomeFirstResponder()
+    }
+    
     
     // update billTotal
     func formatBill( billAmount : Float) {
