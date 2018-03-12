@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var billView: UIView!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var perPerson: UILabel!
+    @IBOutlet weak var changeModes: UIButton!
     
     var totalDecimal : Float = 0;
     var totalBillAmount : Float = 0.0
@@ -27,6 +28,7 @@ class ViewController: UIViewController {
     var intBillAmount: Int = 0;
     var amountArr = [Int]();
     var perValue : Float = 0;
+    var tipMode : Bool = false;
     
     var tip = false
     var selectedTip : Int = 25
@@ -125,6 +127,12 @@ class ViewController: UIViewController {
                 totalBillAmount -= (totalDecimal/1000)
                 
             }
+        
+        case 14:
+            tipMode = !tipMode
+            
+            
+            
             
             
             
@@ -134,7 +142,15 @@ class ViewController: UIViewController {
         
         // display billTotal
         formatBill(billAmount: totalBillAmount)
-        displayTotal()
+        
+        if tipMode {
+            changeModes.setTitle("TIP AMOUNT", for: .normal)
+            displayTip();
+        } else {
+            changeModes.setTitle("PER PERSON", for: .normal)
+             displayTotal()
+        }
+
         
 //        perValue = (totalBillAmount / Float(selectedSplit))
 //        print(perValue)
