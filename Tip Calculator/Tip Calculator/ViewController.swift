@@ -31,10 +31,10 @@ class ViewController: UIViewController {
     var intBillAmount: Int = 0;
     var amountArr = [Int]();
     var perValue : Float = 0;
-    var tipMode : Bool = false;
+    var modeTip : Bool = false;
     
     var tip = false
-    var selectedTip : Int = 25
+    var selectedTip : Int = 5
     var selectedSplit : Int = 1
     let split = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
@@ -57,7 +57,18 @@ class ViewController: UIViewController {
         clearButton.layer.shadowOffset = CGSize.init(width: 0, height: -4)
         clearButton.layer.shadowRadius = 7
         
-        zeroButtonWidth.constant = (self.view.frame.size.width / 3) * 2
+        
+        var screenWidth: CGFloat {
+            return UIScreen.main.bounds.width
+        }
+        
+        if screenWidth <= 320 {
+            splitTextField.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.semibold)
+            tipTextField.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.semibold)
+            
+        }
+        
+        
         
         
     }
@@ -105,36 +116,40 @@ class ViewController: UIViewController {
             decimalLocation = 1
             totalBillAmount = 0.0
             totalDecimal = 0.0;
-            
-        
+ 
         case 13:
-            tipMode = !tipMode
+            modeTip = !modeTip
             
             
         default:
             print("An error occured")
         }
         
+     
+        
         // display billTotal
         formatBill(billAmount: totalBillAmount)
         
-        if tipMode {
+        if modeTip {
             changeModes.setTitle("TIP AMOUNT", for: .normal)
             displayTip();
+            print(modeTip)
         } else {
             changeModes.setTitle("PER PERSON", for: .normal)
              displayTotal()
+            print(modeTip)
         }
 
     }
     
+   
     
     @IBAction func displayTipView(_ sender: Any) {
         tip = true
         print("tip")
         makePickerView()
         makeToolBar()
-          tipTextField.becomeFirstResponder()
+        tipTextField.becomeFirstResponder()
     }
     
     
@@ -143,7 +158,7 @@ class ViewController: UIViewController {
         print("split")
         makePickerView()
         makeToolBar()
-        tipTextField.becomeFirstResponder()
+        splitTextField.becomeFirstResponder()
     }
     
     
@@ -270,12 +285,20 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if tip {
             selectedTip = tipAmount[row]
-            tipTextField.text = "     " + String(selectedTip)
+            tipTextField.text = "    " + String(selectedTip)
         } else {
             selectedSplit = split[row]
-            splitTextField.text = "     " + String(selectedSplit)
+            splitTextField.text = "  " + String(selectedSplit)
         }
-        displayTip()
+        
+        if modeTip {
+            displayTip();
+            print(modeTip)
+        } else {
+            displayTotal()
+            print(modeTip)
+        }
+        
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
