@@ -134,7 +134,7 @@ class ViewController: UIViewController {
         
         // display billTotal
         formatBill(billAmount: totalBillAmount)
-        displayTip()
+        displayTotal()
         
 //        perValue = (totalBillAmount / Float(selectedSplit))
 //        print(perValue)
@@ -152,7 +152,15 @@ class ViewController: UIViewController {
     }
     
     func displayTip() {
-        perPerson.text = "$" + String(format: "%.2f", totalBillAmount * Float(selectedTip) / 100 / Float(selectedSplit))
+        perPerson.text = "$" + String(format: "%.2f", totalBillAmount * (Float(selectedTip) / 100) / Float(selectedSplit))
+    }
+    
+    func displayTotal() {
+        let tipValue : Float = totalBillAmount * Float(selectedTip) / 100
+        var perPersonValue = totalBillAmount + tipValue;
+        perPersonValue /= Float(selectedSplit);
+        perPerson.text = "$" + String(format: "%.2f", perPersonValue)
+        
     }
     
     func turnToArray(amount: Float) {
