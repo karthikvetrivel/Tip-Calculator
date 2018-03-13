@@ -288,7 +288,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource{
             tipTextField.text = "    " + String(selectedTip)
         } else {
             selectedSplit = split[row]
-            splitTextField.text = "  " + String(selectedSplit)
+            splitTextField.text = "   " + String(selectedSplit)
         }
         
         if modeTip {
