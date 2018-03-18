@@ -73,6 +73,10 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
         
         switch sender.tag {
