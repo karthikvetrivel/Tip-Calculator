@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		202EBF1A206448DC00F34DD9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202EBF19206448DC00F34DD9 /* SettingsViewController.swift */; };
 		204A04D5205DEA3E00F1037A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204A04D4205DEA3E00F1037A /* SettingsController.swift */; };
 		25780B192052222A00A77048 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25780B182052222A00A77048 /* AppDelegate.swift */; };
 		25780B1B2052222A00A77048 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25780B1A2052222A00A77048 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		202EBF19206448DC00F34DD9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		204A04D4205DEA3E00F1037A /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		25780B152052222A00A77048 /* Tip Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tip Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25780B182052222A00A77048 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				25780B1A2052222A00A77048 /* ViewController.swift */,
 				204A04D4205DEA3E00F1037A /* SettingsController.swift */,
 				25780B1C2052222A00A77048 /* Main.storyboard */,
+				202EBF19206448DC00F34DD9 /* SettingsViewController.swift */,
 				25780B1F2052222A00A77048 /* Assets.xcassets */,
 				25780B212052222A00A77048 /* LaunchScreen.storyboard */,
 				25780B242052222A00A77048 /* Info.plist */,
@@ -142,6 +145,7 @@
 				204A04D5205DEA3E00F1037A /* SettingsController.swift in Sources */,
 				25780B1B2052222A00A77048 /* ViewController.swift in Sources */,
 				25780B192052222A00A77048 /* AppDelegate.swift in Sources */,
+				202EBF1A206448DC00F34DD9 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

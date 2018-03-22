@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var changeModes: UIButton!
 
     @IBOutlet weak var zeroButtonWidth: NSLayoutConstraint!
-  
     
     var totalDecimal : Float = 0;
     var totalBillAmount : Float = 0.0
@@ -42,6 +41,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         // scaling some of the views.
         firstHeight.constant = (self.view.frame.size.width / 3) - 10
@@ -73,9 +74,9 @@ class ViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//    }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         

@@ -379,7 +379,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Zb-qL-vzQ"/>
-                                                    <segue destination="Jm5-oJ-NaX" kind="show" id="MAF-Ya-JjG"/>
+                                                    <segue destination="3cy-xN-9A4" kind="show" id="Jqy-ce-IDD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -434,11 +434,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" autoresizesSubviews="NO" contentMode="scaleToFill" id="evO-eA-OkH">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <sections>
                             <tableViewSection headerTitle="Set Defaults" id="oDG-ER-7GC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="5Xd-39-5Xa">
-                                        <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="75.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Xd-39-5Xa" id="VVl-lw-yi6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -455,7 +460,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DgT-EA-3RK">
-                                        <rect key="frame" x="0.0" y="99.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="119.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DgT-EA-3RK" id="2dC-Ye-Ik6">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -479,7 +484,51 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZA-w9-tjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="891" y="131"/>
+            <point key="canvasLocation" x="926" y="-600"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="lXO-Um-k3F">
+            <objects>
+                <viewController id="3cy-xN-9A4" customClass="SettingsViewController" customModule="Tip_Calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9ld-IA-xdL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPn-kN-pRQ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3p-iU-zAc">
+                                        <rect key="frame" x="86" y="26" width="149" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.83664661645889282" green="0.3430931568145752" blue="0.27005988359451294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstItem="b3p-iU-zAc" firstAttribute="leading" secondItem="cPn-kN-pRQ" secondAttribute="leading" constant="86" id="Cia-wX-fnj"/>
+                                    <constraint firstItem="b3p-iU-zAc" firstAttribute="centerX" secondItem="cPn-kN-pRQ" secondAttribute="centerX" id="WE0-nu-ZFE"/>
+                                    <constraint firstItem="b3p-iU-zAc" firstAttribute="centerY" secondItem="cPn-kN-pRQ" secondAttribute="centerY" constant="0.5" id="lm4-t4-DFy"/>
+                                    <constraint firstItem="b3p-iU-zAc" firstAttribute="top" secondItem="cPn-kN-pRQ" secondAttribute="top" constant="26" id="p3U-hW-5CC"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cPn-kN-pRQ" firstAttribute="trailing" secondItem="I3v-Sp-hoQ" secondAttribute="trailing" id="3cQ-sK-gt1"/>
+                            <constraint firstItem="cPn-kN-pRQ" firstAttribute="top" secondItem="9ld-IA-xdL" secondAttribute="top" id="DG4-f3-xrz"/>
+                            <constraint firstItem="cPn-kN-pRQ" firstAttribute="leading" secondItem="I3v-Sp-hoQ" secondAttribute="leading" id="Shx-Dp-u7f"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I3v-Sp-hoQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="navBar" destination="cPn-kN-pRQ" id="8oj-MA-EF7"/>
+                        <outlet property="settingsTitle" destination="b3p-iU-zAc" id="pja-AB-fih"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G2X-kv-QtO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="978.75" y="130.98591549295776"/>
         </scene>
     </scenes>
     <resources>
