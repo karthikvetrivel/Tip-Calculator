@@ -23,7 +23,10 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func backButton(_ sender: Any) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

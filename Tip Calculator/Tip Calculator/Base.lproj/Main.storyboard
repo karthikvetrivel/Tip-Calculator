@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -503,13 +504,26 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKK-hM-FPK">
+                                        <rect key="frame" x="8" y="22" width="63" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" red="0.99519230769230771" green="0.99038461538461542" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButton:" destination="3cy-xN-9A4" eventType="touchDown" id="GbL-72-X0s"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.83664661645889282" green="0.3430931568145752" blue="0.27005988359451294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="b3p-iU-zAc" firstAttribute="leading" secondItem="cPn-kN-pRQ" secondAttribute="leading" constant="86" id="Cia-wX-fnj"/>
                                     <constraint firstItem="b3p-iU-zAc" firstAttribute="centerX" secondItem="cPn-kN-pRQ" secondAttribute="centerX" id="WE0-nu-ZFE"/>
+                                    <constraint firstItem="b3p-iU-zAc" firstAttribute="leading" secondItem="fKK-hM-FPK" secondAttribute="trailing" constant="15" id="eNe-oX-gvN"/>
+                                    <constraint firstItem="fKK-hM-FPK" firstAttribute="leading" secondItem="cPn-kN-pRQ" secondAttribute="leadingMargin" id="fDw-lH-1sB"/>
                                     <constraint firstItem="b3p-iU-zAc" firstAttribute="centerY" secondItem="cPn-kN-pRQ" secondAttribute="centerY" constant="0.5" id="lm4-t4-DFy"/>
                                     <constraint firstItem="b3p-iU-zAc" firstAttribute="top" secondItem="cPn-kN-pRQ" secondAttribute="top" constant="26" id="p3U-hW-5CC"/>
+                                    <constraint firstItem="fKK-hM-FPK" firstAttribute="centerY" secondItem="cPn-kN-pRQ" secondAttribute="centerY" id="un7-sF-IYp"/>
                                 </constraints>
                             </view>
                         </subviews>
