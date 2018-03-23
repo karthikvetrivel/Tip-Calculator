@@ -9,12 +9,15 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    @IBOutlet weak var settingsContainer: UIView!
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var settingsTitle: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        settingsTitle.center = navBar.center
+        settingsContainer.layer.cornerRadius = 10
+        settingsContainer.layer.masksToBounds = true
+        self.view.backgroundColor = UIColor(red:0.93, green:0.93, blue:0.93, alpha:1.0)
         // Do any additional setup after loading the view.
     }
 
