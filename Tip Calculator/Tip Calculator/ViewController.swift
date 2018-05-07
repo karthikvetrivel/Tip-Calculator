@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     var modeTip : Bool = false;
     
     var tip = false
-    var selectedTip : Int = 15
+    var selectedTip : Int = 25
     var selectedSplit : Int = 1
     let split = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     let tipAmount = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
