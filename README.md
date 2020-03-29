@@ -1,4 +1,4 @@
-# Tip-Calculator
+# Novel Tip and Split Calculator with beautiful UI implementation
 
 To Do:
 - Settings page
@@ -7,4 +7,4 @@ To Do:
 
 Collaborators:
   - SurrealShock
-  - KarthikVVV
+  - karthikvetrivel
